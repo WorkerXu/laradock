@@ -1,6 +1,7 @@
 .idea
 /logs
 /data
+/src
 .env
 /.project
 .docker-sync
