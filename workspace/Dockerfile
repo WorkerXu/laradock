@@ -33,7 +33,7 @@ USER root
 ARG CHANGE_SOURCE=false
 RUN if [ ${CHANGE_SOURCE} = true ]; then \
     # Change application source from deb.debian.org to aliyun source
-    sed -i 's/ports.ubuntu.com/mirrors.aliyun.com/g' /etc/apt/sources.list; \
+    sed -i 's/ports.ubuntu.com/mirrors.tuna.tsinghua.edu.cn/g' /etc/apt/sources.list; \
   fi;
 
 ###########################################################################
@@ -1533,37 +1533,37 @@ RUN if [ ${SHELL_OH_MY_ZSH} = true ]; then \
 ARG SHELL_OH_MY_ZSH_AUTOSUGESTIONS=false
 ARG SHELL_OH_MY_ZSH_ALIASES=false
 
-USER laradock
-RUN if [ ${SHELL_OH_MY_ZSH} = true ]; then \
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh) --keep-zshrc" && \
-    sed -i -r 's/^plugins=\(.*?\)$/plugins=(laravel5)/' /home/laradock/.zshrc && \
-    echo '\n\
-bindkey "^[OB" down-line-or-search\n\
-bindkey "^[OC" forward-char\n\
-bindkey "^[OD" backward-char\n\
-bindkey "^[OF" end-of-line\n\
-bindkey "^[OH" beginning-of-line\n\
-bindkey "^[[1~" beginning-of-line\n\
-bindkey "^[[3~" delete-char\n\
-bindkey "^[[4~" end-of-line\n\
-bindkey "^[[5~" up-line-or-history\n\
-bindkey "^[[6~" down-line-or-history\n\
-bindkey "^?" backward-delete-char\n' >> /home/laradock/.zshrc && \
-  if [ ${SHELL_OH_MY_ZSH_AUTOSUGESTIONS} = true ]; then \
-    sh -c "git clone https://github.com/zsh-users/zsh-autosuggestions /home/laradock/.oh-my-zsh/custom/plugins/zsh-autosuggestions" && \
-    sed -i 's~plugins=(~plugins=(zsh-autosuggestions ~g' /home/laradock/.zshrc && \
-    sed -i '1iZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20' /home/laradock/.zshrc && \
-    sed -i '1iZSH_AUTOSUGGEST_STRATEGY=(history completion)' /home/laradock/.zshrc && \
-    sed -i '1iZSH_AUTOSUGGEST_USE_ASYNC=1' /home/laradock/.zshrc && \
-    sed -i '1iTERM=xterm-256color' /home/laradock/.zshrc \
-  ;fi && \
-  if [ ${SHELL_OH_MY_ZSH_ALIASES} = true ]; then \
-    echo "" >> /home/laradock/.zshrc && \
-    echo "# Load Custom Aliases" >> /home/laradock/.zshrc && \
-    echo "source /home/laradock/aliases.sh" >> /home/laradock/.zshrc && \
-    echo "" >> /home/laradock/.zshrc \
-  ;fi \
-;fi
+# USER laradock
+# RUN if [ ${SHELL_OH_MY_ZSH} = true ]; then \
+#     sh -c "$(curl -fsSL https://gitee.com/mirrors/oh-my-zsh/raw/master/tools/install.sh) --keep-zshrc" && \
+#     sed -i -r 's/^plugins=\(.*?\)$/plugins=(laravel5)/' /home/laradock/.zshrc && \
+#     echo '\n\
+# bindkey "^[OB" down-line-or-search\n\
+# bindkey "^[OC" forward-char\n\
+# bindkey "^[OD" backward-char\n\
+# bindkey "^[OF" end-of-line\n\
+# bindkey "^[OH" beginning-of-line\n\
+# bindkey "^[[1~" beginning-of-line\n\
+# bindkey "^[[3~" delete-char\n\
+# bindkey "^[[4~" end-of-line\n\
+# bindkey "^[[5~" up-line-or-history\n\
+# bindkey "^[[6~" down-line-or-history\n\
+# bindkey "^?" backward-delete-char\n' >> /home/laradock/.zshrc && \
+#   if [ ${SHELL_OH_MY_ZSH_AUTOSUGESTIONS} = true ]; then \
+#     sh -c "git clone https://gitee.com/wangzhen0518/zsh-autosuggestions.git /home/laradock/.oh-my-zsh/custom/plugins/zsh-autosuggestions" && \
+#     sed -i 's~plugins=(~plugins=(zsh-autosuggestions ~g' /home/laradock/.zshrc && \
+#     sed -i '1iZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20' /home/laradock/.zshrc && \
+#     sed -i '1iZSH_AUTOSUGGEST_STRATEGY=(history completion)' /home/laradock/.zshrc && \
+#     sed -i '1iZSH_AUTOSUGGEST_USE_ASYNC=1' /home/laradock/.zshrc && \
+#     sed -i '1iTERM=xterm-256color' /home/laradock/.zshrc \
+#   ;fi && \
+#   if [ ${SHELL_OH_MY_ZSH_ALIASES} = true ]; then \
+#     echo "" >> /home/laradock/.zshrc && \
+#     echo "# Load Custom Aliases" >> /home/laradock/.zshrc && \
+#     echo "source /home/laradock/aliases.sh" >> /home/laradock/.zshrc && \
+#     echo "" >> /home/laradock/.zshrc \
+#   ;fi \
+# ;fi
 
 USER root
 
